@@ -1,0 +1,166 @@
+{
+    "pages" : [
+        //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+        {
+            "path" : "pages/login/login",
+			"style" : {
+			    "navigationStyle" : "custom"
+			}
+        },
+        {
+            "path" : "pages/index/index",
+            "style" : {
+                "navigationBarTitleText" : "文明城市创建",
+				"usingComponents":{
+					"van-card": "/wxcomponents/vant-weapp/card/index"
+				}
+            }
+        },
+        {
+            "path" : "pages/msg/msg",
+            "style" : {
+                "navigationBarTitleText" : "消息通知"
+            }
+        },
+        {
+            "path" : "pages/my/my",
+            "style" : {
+                "navigationBarTitleText" : "个人中心"
+            }
+        },
+        {
+            "path" : "pages/ucenter/register",
+            "style" : {
+                "navigationBarTitleText" : "忘记密码"
+            }
+        },
+        {
+            "path" : "pages/indexpages/sdpc/sdpc",
+            "style" : {
+                "navigationBarTitleText" : "评测任务"
+            }
+        },
+		{
+			"path":  "pages/indexpages/sdpc/rwxq",
+			"style" : {
+			    "navigationBarTitleText" : "任务详情",
+				"navigationStyle" : "custom"
+			}
+		},
+		{
+			"path":  "pages/indexpages/sdpc/kspc",
+			"style" : {
+			    "navigationBarTitleText" : "开始评测"
+			}
+		}
+        ,{
+            "path" : "pages/indexpages/fbtz/fbtz",
+            "style" : {
+				"navigationBarTitleText" : "发布通知",
+				"navigationStyle" : "custom"
+			}
+        }
+		,{
+		    "path" : "pages/indexpages/fbtz/xjtz",
+		    "style" : {
+				"navigationBarTitleText" : "新建通知",
+				"navigationStyle" : "custom"
+			}
+		}
+        ,{
+            "path" : "pages/indexpages/dwjh/dwjh",
+            "style" : {
+				"navigationBarTitleText" : "点位集合"
+			}
+        }
+		,{
+		    "path" : "pages/indexpages/dwjh/phone-search",
+		    "style" : {}
+		}
+        ,{
+            "path" : "pages/indexpages/qjdt/qjdt",
+            "style" : {
+				"navigationBarTitleText" : "点位云图"
+			}
+        }
+        ,{
+            "path" : "pages/indexpages/ssjg/ssjg",
+            "style" : {
+				"navigationStyle" : "custom"
+			}
+        }
+		,{
+		    "path" : "pages/indexpages/ssjg/xjjg",
+		    "style" : {
+				"navigationBarTitleText" : "新建监管",
+				"usingComponents":{
+					"van-cell": "/wxcomponents/vant-weapp/cell/index",
+					"van-cell-group": "/wxcomponents/vant-weapp/cell-group/index",
+					"van-icon": "/wxcomponents/vant-weapp/icon/index",
+					"van-datetime-picker": "/wxcomponents/vant-weapp/datetime-picker/index"
+				}
+			}
+		}
+        ,{
+            "path" : "pages/indexpages/webview/webview",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/indexpages/lxr/lxr",
+            "style" : {
+				"navigationBarTitleText" : "联系人",
+				"navigationStyle" : "custom",
+				"usingComponents": {
+					"van-search": "/wxcomponents/vant-weapp/search/index",
+					"van-collapse": "/wxcomponents/vant-weapp/collapse/index",
+					"van-collapse-item": "/wxcomponents/vant-weapp/collapse-item/index",
+					"van-cell": "/wxcomponents/vant-weapp/cell/index",
+					"van-cell-group": "/wxcomponents/vant-weapp/cell-group/index",
+					"van-checkbox": "/wxcomponents/vant-weapp/checkbox/index",
+					"van-checkbox-group": "/wxcomponents/vant-weapp/checkbox-group/index"
+				}
+			}
+        },
+		{
+		    "path" : "pages/indexpages/lxr/lxrxx",
+		    "style" : {
+				"navigationBarTitleText" : "联系人信息",
+				"usingComponents":{
+					"van-icon": "/wxcomponents/vant-weapp/icon/index"
+				}
+			}
+		}
+    ],
+    "globalStyle" : {
+        "navigationBarTextStyle" : "black",
+        "navigationBarTitleText" : "文明城市创建",
+        "navigationBarBackgroundColor" : "#F8F8F8",
+        "backgroundColor" : "#F8F8F8"
+    },
+    "tabBar" : {
+        "borderStyle" : "black",
+        "backgroundColor" : "#333",
+        "color" : "#8F8F94",
+        "selectedColor" : "#f33e54",
+        "list" : [
+            {
+                "pagePath" : "pages/index/index",
+                "iconPath" : "static/image/home.png",
+                "selectedIconPath" : "static/image/homeactive.png",
+                "text" : "首页"
+            },
+            {
+                "pagePath" : "pages/msg/msg",
+                "iconPath" : "static/image/news.png",
+                "selectedIconPath" : "static/image/newsactive.png",
+                "text" : "消息通知"
+            },
+            {
+                "pagePath" : "pages/my/my",
+                "iconPath" : "static/image/me.png",
+                "selectedIconPath" : "static/image/meactive.png",
+                "text" : "个人中心"
+            }
+        ]
+    }
+}

@@ -1,0 +1,427 @@
+/* 
+	sunUI(轻便、简洁、易扩展)
+	
+	Q. 为什么不把具体的样式写进sunUI.css
+	A. 为了方便轻便、简介性、扩展性方便大家的“使用”,sunUI.css仅提供基础样式
+	
+	Q. 为什么仅仅提供了示例,而非完整的样式?
+	A. 方便大家学习并了解其中的原理; 授人以鱼不如授人以渔
+	
+	Q. 我能为sunUI提供一些组件和样式以及需求吗?
+	A. 非常感谢大家能提供样式、组件、模板和bug以及需求,如果提供了版本迭代时就会贴上对应的署名
+	
+	Tips:
+	1.如果样式被flex布局影响了,直接修改display属性为block或其它就可以避免所有布局影响.
+	2.公共样式最好不要写上最大权限值important
+	3.关于脱离文档流(position:absolute,fixed...)和文档流(font-size、color)要分清顺序(可以减少dom操作影响)
+	4.z-index仅当前样式有position属性才生效,z-index:9999
+	5.使用别套UI要参考ui前缀,譬如:sunui-xx
+	6.样式最好分离管理(最后利用一些工具,例如webpack合成)
+	7.button、view、navigator支持hover-class;其余标签则不支持
+	8.uniapp 特别是最外层page最好不要使用外边距(margin),最好使用内边距(padding)
+ */
+
+
+view {
+	font-size: 28upx;
+	line-height: 2em;
+}
+
+uni-view[hidden] {
+	display: none !important;
+}
+
+button,
+button:after,
+button:before {
+	border-radius: 0;
+	border: 0;
+	position: relative;
+}
+
+image,
+video,
+progress,
+checkbox-group,
+input,
+form {
+	width: 100%;
+}
+
+/* 隐藏滚动条 */
+::-webkit-scrollbar {
+	display: none !important;
+}
+
+
+/* button禁用样式 */
+button[disabled] {
+	color: #fff !important;
+	background: #cdcdcd !important;
+	border: transparent !important;
+}
+
+/* 采用grid来进行九宫格布局 */
+.sunui-grid-3 {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 8px;
+}
+
+
+/* cell单元格 */
+.sunui-cell {
+	position: relative;
+	display: -webkit-flex;
+	display: flex;
+	width: 100%;
+	padding: 10px 15px;
+	font-size: 1em;
+	color: #333;
+	background-color: #fff;
+	box-sizing: border-box;
+}
+
+.sunui-cell-label {
+	margin-top: 3px;
+	font-size: 12px;
+	line-height: 18px;
+	color: #999;
+}
+
+.sunui-cell:after {
+	content: ' ';
+	position: absolute;
+	bottom: 0;
+	width: 96%;
+	border-bottom: 1px solid #eee;
+}
+
+.sunui-cell-title {
+	flex: 1;
+}
+
+.sunui-cell-value {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	overflow: hidden;
+	color: #999;
+	text-align: right;
+	vertical-align: middle;
+}
+
+
+/* 阴影 */
+.sunui-box-shadow {
+	box-shadow: 0px 0px 8px #D5D6D8;
+}
+
+/* 
+	圆角(分为小、中、大阴影)
+*/
+.sunui-redius-small {
+	border-radius: 20upx !important;
+}
+
+.sunui-redius-middle {
+	border-radius: 30upx !important;
+}
+
+.sunui-redius-big {
+	border-radius: 100upx !important;
+}
+
+
+/* 内边距(貌似设置外边距会出现页面可以下拉的情况) */
+.sunui {
+	padding: 4%;
+}
+
+/* 标题 */
+.sunui-title {
+	margin: 0;
+	margin-bottom: 4%;
+	font-weight: 400;
+	font-size: 14px;
+	color: rgba(69, 90, 100, 0.6);
+	padding: 20px 15px 15px;
+	border-bottom: 1upx solid #eee;
+}
+
+/* tag标签 */
+.sunui-tag {
+	color: #fff;
+	font-size: 10px;
+	padding: .2em .5em;
+	line-height: normal;
+	border-radius: .2em;
+	display: inline-block;
+}
+
+.sunui-tag+.sunui-transpaint {
+	background-color: transparent;
+}
+
+
+/* text文字 */
+.sunui-text {
+	width: 25%;
+	line-height: 50px;
+	border-bottom: 1px solid #F8F8F8;
+	border-right: 1px solid #F8F8F8;
+}
+
+.sunui-text-ellipsis {
+	width: 160rpx;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+
+/* bg背景 */
+.sunui-bg {
+	width: 20%;
+	line-height: 50px;
+	margin: 10px;
+	text-align: center;
+	border-radius: 5px;
+	box-shadow: 0 0 10px 15px inherit;
+}
+
+.sunui-lgbg-green {
+	background-image: linear-gradient(45deg, #39B55A 0%, #8DC63E 80%);
+}
+
+.sunui-shadow {
+	position: relative;
+}
+
+.sunui-shadow:before {
+	content: "";
+	display: block;
+	width: 100%;
+	height: 100%;
+	background: inherit;
+	filter: blur(3px);
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	z-index: -1;
+	opacity: 0.38;
+	transform-origin: 0 0;
+	border-radius: inherit;
+	transform: scale(1, 1);
+}
+
+
+/* 
+	文字(字体图标)颜色,一般用于步骤条等颜色...
+*/
+
+.text-white {
+	color: #fff;
+}
+
+.text-red {
+	color: #e54d42;
+}
+
+.text-orange {
+	color: #f37b1d;
+}
+
+/* 外边距 */
+
+
+
+/* 内边距 */
+
+
+
+/* flex布局 */
+.f {
+	display: flex;
+}
+
+.f-wrap {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.f-flow {
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+.f-start {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.f-center {
+	display: flex;
+	justify-content: center;
+}
+
+.f-end {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.f-s-a {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.f-s-b {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.f-align-c {
+	display: flex;
+	align-items: center;
+}
+
+.f-align-s {
+	display: flex;
+	align-items: flex-start;
+}
+
+.f-align-e {
+	display: flex;
+	align-items: flex-end;
+}
+
+.f-algin-b {
+	display: flex;
+	align-items: baseline;
+}
+
+.f-align-stretch {
+	display: flex;
+	align-items: stretch;
+}
+
+.f-align-center {
+	display: flex;
+	align-items: center;
+}
+
+/* hover-class*/
+.nav-hover,
+.btn-hover {
+	opacity: .9;
+	position: relative;
+}
+
+.nav-hover:after,
+.btn-hover:after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, .01);
+}
+
+.btn.btn-hover {
+	transform: translate(1upx, 1upx);
+}
+
+/* 展示隐藏 */
+.show {
+	display: block !important;
+}
+
+.hidden {
+	display: none !important;
+}
+
+/* 头像 */
+.head-avatar-small {
+	width: 100upx;
+	height: 100upx;
+	border-radius: 50%;
+}
+
+.head-avatar-middle {
+	width: 160upx;
+	height: 160upx;
+	border-radius: 50%;
+}
+
+.head-avatar-big {
+	width: 220upx;
+	height: 220upx;
+	border-radius: 50%;
+}
+
+
+/* 文字方向 */
+.t-left {
+	text-align: left;
+}
+
+.t-right {
+	text-align: right;
+}
+
+.t-center {
+	text-align: center;
+}
+
+
+/* 背景颜色 */
+.bg-blue {
+	background-color: #038dd8;
+}
+
+.bg-green {
+	background-color: #009b4d;
+}
+
+.bg-yellow {
+	background-color: #fdd100;
+}
+
+.bg-orange {
+	background-color: #f18518;
+}
+
+
+/* 宽度 */
+.w-100 {
+	width: 100%;
+}
+
+.w-50 {
+	width: 50%;
+}
+
+.w-33 {
+	width: 33.33333%;
+}
+
+.w-20 {
+	width: 20%;
+}
+
+/* 垂直居中 */
+.flex-vertical-center {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-items: center;
+	word-break: break-all;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, .7);
+}
